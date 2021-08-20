@@ -2,26 +2,25 @@
 
 list AWS security group dependencies, so you know which security group has reference to other group
 
-it can be used to find out the security group used by which ec2/rds/redshift/elastcache/eni instance
+it can be used to find out the security group used by which ec2/elb/rds/lambda/redshift/elasticache/eni instance
 
-or you can list security groups not used by any of ec2/rds/redshift/elastcache/eni instance and can be safely deleted
+or you can list security groups not used by any of ec2/elb/rds/lambda/redshift/elasticache/eni instance and can be safely deleted
 
-------
+## requirements
 
-# requirements
+Python 3+ and boto3 installed. you can install boto3 by:
 
-Python 2.7+ and boto installed. you can install boto by:
+```sh
+pip install boto3
 ```
-pip install boto
-```
 
-# Install
+## Install
 
-download the python file https://raw.githubusercontent.com/mingbowan/sgdeps/master/sgdeps.py 
+download the python file https://raw.githubusercontent.com/mingbowan/sgdeps/master/sgdeps.py
 
-# configure 
+## configure
 
-```
+```sh
 setup your boto credentails.
 
 here's a few options:
@@ -29,22 +28,22 @@ here's a few options:
      or create one or some of below files (boto will evaluate in order):
         /etc/boto.cfg
         ~/.boto
-        ~/.aws/credentials 
+        ~/.aws/credentials
      and put your credentials in the file(s) with below format:
        [Credentials]
        aws_access_key_id = <your_access_key_here>
        aws_secret_access_key = <your_secret_key_here>
 ```
 
-# usage:
+## usage
 
-``` 
+```sh
 python sgdeps.py --region <region_name> [--list] [--obsolete | --eni_only] [security_group]
 ```
 
-# example:
+## example
 
-```
+```sh
 $ python sgdeps.py --region us-east-1 mingbotest-A
 sg-b4566ad1 (mingbotest-A)
 |-- sg-9b566afe (mingbotest-C2)
